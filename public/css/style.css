@@ -1,0 +1,29 @@
+html, body{
+  margin: 0;
+}
+
+*{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.app-menu{
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  position: fixed;
+  background-color: aquamarine;
+  z-index: 1000;
+}
+
+.menu-item{
+  width: auto;
+  float: left;
+  font-size: 14px;
+  text-align: center;
+}
