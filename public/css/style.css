@@ -1,29 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500');
+
+:root {
+  --white-prim : #ffffff;
+  --white-sec : #eeeeee;
+  --darkgrey-prim : #89BED1;
+  --darkgrey-sec : #A1A6BB;
+  --lightgrey-prim: #F0F2F7;
+  --lightgrey-sec : #E4E7EF;
+  --darkblue-prim : #3A4058;
+  --darkblue-sec : #222328;
+  --blue-prim : #0D8AEE;
+  --blue-sec : #2196F3;
+  --green-prim : #4BE1AB;
+  --green-sec : #43D29E;
+  --red-prim : #FE5339;
+  --red-sec : #EB4E36;
+  --yellow-prim : #F3D351;
+  --yellow-sec : #E8C63B;
+}
+
 html, body{
   margin: 0;
+  background-color: #E2EFF1;
 }
 
 *{
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 a {
   color: #00B7FF;
 }
 
+.smooth {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+
 .app-menu{
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  padding: 10px 10px 10px 10px;
+  height: 54px;
   position: fixed;
-  background-color: aquamarine;
-  z-index: 1000;
+  background-color: var(--white-prim);
+  z-index: 10000;
 }
 
-.menu-item{
-  width: auto;
+.app-logo{
+  width: 54px;
+  height: 54px;
   float: left;
-  font-size: 14px;
-  text-align: center;
+  background-color: aquamarine;
+}
+
+.app-name{
+  width: auto;
+  height: 54px;
+  float: left;
+  padding: 5px;
+  line-height: 44px;
+  font-weight: 500;
+  box-sizing: border-box;
+  color: #276ee3;
+}
+
+.app-nav-left{
+  width: auto;
+  height: 54px;
+  float: left;
+}
+
+.app-nav-right{
+  width: auto;
+  height: 54px;
+  float: right;
+}
+
+.app-nav-title{
+  height: 18px;
+  float: right;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 18px 15px 18px 15px;
+  text-transform: capitalize;
+  color: #3a6296;
+  opacity: 0.45;
+  cursor: pointer;
+}
+
+.app-nav-title:hover{
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.9;
 }
