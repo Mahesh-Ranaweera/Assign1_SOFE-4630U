@@ -21,8 +21,23 @@ client.on('error', (err, client)=>{
     process.exit(-1);
 });
 
-const query = await client.query(
-    'CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, fname VARCHAR(100), lname VARCHAR(100))'
-);
+const createTB = 
+    'CREATE TABLE IF NOT EXISTS users('+
+    'email VARCHAR(100) PRIMARY KEY,'+
+    'fname VARCHAR(100) NOT NULL,'+
+    'lname VARCHAR(100) NOT NULL,'+
+    'passw VARCHAR(100) NOT NULL);'+
+    'CREATE TABLE IF NOT EXISTS notes('+
+    'id SERIAL PRIMARY KEY,'+
+    'email VARCHAR(100) NOT NULL,'+
+    'mime_type VARCHAR(255) NOT NULL,'+
+    'file_name VARCHAR(255) NOT NULL,'+
+    'file_data BYTEA NOT NULL);';
 
-await client.end();
+client.query(createTB, (err, res) => {
+    if(err){
+        console.log(err.stack);
+    }else{
+        console.log(res)
+    }
+});
