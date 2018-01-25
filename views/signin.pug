@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    .signup-content
+        .uk-card.uk-card-default.uk-card-body.card-border-radius
+                .uk-card-title
+                    | SIGNUP
+
+                form.uk-grid-small(method='POST')
+                    .uk-margin
+                        .uk-width-1-1
+                            label(for='strEmail') Email
+                            input.uk-input(name='strEmail', type='email', required)

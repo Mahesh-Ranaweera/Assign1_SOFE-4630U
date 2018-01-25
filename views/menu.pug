@@ -1,11 +1,14 @@
 .app-menu
     .app-nav-left
-        .app-logo
+        a(href='/')
+            .app-logo
         .app-name
             | NOTEBOOK
 
     .app-nav-right.smooth
-        .app-nav-title
-            | SIGN UP
-        .app-nav-title
-            | SIGN IN
+        a(href='/signup')
+            .app-nav-title
+                | SIGN UP
+        a(href='/signin')
+            .app-nav-title
+                | SIGN IN

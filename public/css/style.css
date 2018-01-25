@@ -195,7 +195,7 @@
 
 html, body{
   margin: 0;
-  background-color: #E2EFF1;
+  background-color: #E2EFF1 !important;
 }
 
 *{
@@ -344,4 +344,22 @@ a {
 
 .section-flex{
   display: flex;
+}
+
+/**Signup/signin page**/
+.signup-content{
+  width: 95%;
+  max-width: 460px;
+  min-width: 300px;
+  position: fixed;
+  height: auto;
+  background-color: #0D8AEE;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.text-label{
+  font-size: 12px;
 }

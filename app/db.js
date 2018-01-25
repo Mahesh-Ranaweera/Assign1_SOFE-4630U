@@ -7,10 +7,10 @@
  } = require('pg')
 
  const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'webapp',
-    password: 'a2fb22ce710899f6e455b3984ee16930',
+    user: 'tbsmriqsbfcpfy',
+    host: 'ec2-174-129-22-84.compute-1.amazonaws.com',
+    database: 'd212acb3pq837g',
+    password: '4384d286260ec5c0d9e5750dc20a07bbc1bc9ed416c8c77d74b84fe96bca4599',
     post: 5432,
 });
 
