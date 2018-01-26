@@ -1,28 +1,31 @@
-extends layout
+extends header
 
-block content
-  .section.add-top-bottom-padding
-    .section-header
-      | Notebook
-    .section-sec-header
-      | Create and share your Notes
+block html
+  include menu.pug
 
-  .section
-    .section-tab.section-flex
-      .card-section.half_w
-        | Half  asdasdasd
-        | asdadsdas asda  asdasda dasd asda asdas  dasd as das das das
-      .card-section.half_w
-        | Half
-    .section-tab
-      | adasdas asd a
-    .section-tab
-      | adasdas asd a
+  .app-content
+    .section.add-top-bottom-padding
+      .section-header
+        | Notebook
+      .section-sec-header
+        | Create and share your Notes
 
-  .section
-    .section-tab
-      | adasdas asd a
-    .section-tab
-      | adasdas asd a
-    .section-tab
-      | adasdas asd a
+    .section
+      .section-tab.section-flex
+        .card-section.half_w
+          | Half  asdasdasd
+          | asdadsdas asda  asdasda dasd asda asdas  dasd as das das das
+        .card-section.half_w
+          | Half
+      .section-tab
+        | adasdas asd a
+      .section-tab
+        | adasdas asd a
+
+    .section
+      .section-tab
+        | adasdas asd a
+      .section-tab
+        | adasdas asd a
+      .section-tab
+        | adasdas asd a
