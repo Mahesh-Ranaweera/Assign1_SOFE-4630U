@@ -38,11 +38,11 @@ client.query(createTB, (err, res) => {
     if(err){
         console.log(err.stack);
     }else{
-        console.log(res)
+        console.log("|| TABLES CREATED ||")
     }
 });
 
-var addUSER = function(data){
+var addUSER = function(data, callback){
     
     var sql = "INSERT INTO users(email, fname, lname, passw) values($1, $2, $3, $4)";
     var values = [data.email, data.fname, data.lname, data.passw];
@@ -50,25 +50,31 @@ var addUSER = function(data){
     client.query(sql, values, (err, res) => {
         if(err){
             //console.log(err.stack);
-            return false;
+            callback(false);
         }else{
-            console.log(res);
-            return true;
+            //console.log(res);
+            callback(true);
         }
     });
 }
 
-var getUSER = function(data){
+var getUSER = function(data, callback){
     
-    var sql = "SELECT email, fname, lname, passw FROM users";
+    var sql = "SELECT email, fname, lname, passw FROM users WHERE email=$1";
+    var values = [data.email];
 
-    client.query(sql, (err, res) => {
+    client.query(sql, values, (err, res) => {
         if(err){
-            console.log(err.stack);
+            console.log(err);
+            callback(err);
         }else{
-            console.log(res);
+            if(res.rows.length == 0){
+                callback(null);
+            }else{
+                callback(res.rows);
+            }
         }
-    })
+    });
 }
 
 

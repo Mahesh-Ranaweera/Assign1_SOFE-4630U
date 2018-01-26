@@ -22,9 +22,30 @@ router.post('/signin', function (req, res, next) {
   var email = req.body.strEmail;
   var passw = req.body.strPassw;
 
-  console.log(email, passw);
+  data = {
+     email: email
+  }
 
-  res.redirect('/signin');
+  dbconn.getUSER(data, function(state){
+
+    user_data = JSON.stringify(state[0]);
+    console.log(user_data);
+    console.log(user_data["email"]);
+
+    //check if user exists
+    if(state != null){
+      //authenticate the user
+      if(user_data.email == email){
+        console.log("Correct email");
+      }else{
+        console.log("wrong email");
+      }
+    }else{
+      console.log("USER DOES NOT EXISTS");
+    }
+    
+    res.redirect('/signin');
+  });
 })
 
 /**GET Signup Page */
@@ -53,13 +74,16 @@ router.post('/signup', function (req, res, next) {
     }
 
     //console.log(data);
+    /**Add the data to db */
+    dbconn.addUSER(data, function(state){
+      if(state){
+        console.log('Entered');
+      }else{
+        console.log('Error');
+      }
+      res.redirect('/signup?passw=success');
+    });
 
-    if(dbconn.addUSER(data)){
-      console.log('Entered');
-    }else{
-      console.log('Error');
-    }
-    res.redirect('/signup');
   } else {
     res.redirect('/signup?passw=error');
   }
