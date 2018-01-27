@@ -1,0 +1,18 @@
+extends header
+
+block html
+    .app-menu
+        .app-nav-left
+            a(href='/')
+                .app-logo
+            .app-name
+                | NOTEBOOK : #{name}
+
+        .app-nav-right.smooth
+            a(href='/signout')
+                .app-nav-title
+                    | SIGN OUT
+                    span(uk-icon='icon: sign-out' title='SIGN OUT')
+
+    .app-content
+        block content

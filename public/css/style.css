@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
 
 :root {
   --white-prim : #ffffff;
@@ -199,7 +199,8 @@ html, body{
 }
 
 *{
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }
 
 a {
@@ -250,7 +251,7 @@ a {
   float: left;
   padding: 5px;
   line-height: 44px;
-  font-weight: 500;
+  font-weight: 600;
   box-sizing: border-box;
   color: #276ee3;
 }
@@ -271,7 +272,7 @@ a {
   height: 18px;
   float: right;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 18px;
   margin: 18px 15px 18px 15px;
   text-transform: capitalize;
@@ -291,10 +292,9 @@ a {
   width: 100%;
   position: absolute;
   background-color: transparent;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 64px;
-  margin-bottom: 64px;
+  margin: 64px auto 64px auto;
+  box-sizing: border-box;
+  padding: 5px;
   left: 0;
   right: 0;
 }
@@ -304,6 +304,12 @@ a {
   height: auto;
   float: left;
   padding-bottom: 20px;
+}
+
+.section-header{
+  font-size: 16px !important;
+  float: left;
+  font-weight: 600;
 }
 
 .section-tab{
@@ -369,4 +375,54 @@ a {
 
 .text-label{
   font-size: 12px;
+}
+
+/**Content*/
+.content-card{
+  width: 100%;
+  height: auto;
+  float: left;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 2.5px;
+
+  -webkit-box-shadow: 0px 5px 15px rgba(0,0,0,0.02);
+  -moz-box-shadow: 0px 5px 15px rgba(0,0,0,0.02);
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.02);
+}
+
+.card-holder{
+  height: auto;
+  float: left;
+  padding: 0px 4px 4px 4px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card-holder:hover{
+  z-index: 1000;
+}
+
+.card-height{
+  height: 200px;
+}
+
+.card-icon-center{
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+}
+
+.content-header{
+  width: 100%;
+  height: auto;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 0 20px 5px;
+  line-height: 24px;
 }

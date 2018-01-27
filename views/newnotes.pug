@@ -1,0 +1,21 @@
+extends header
+
+block html
+    .section
+        .uk-card.uk-card-default.uk-card-body
+            .uk-margin
+                input.uk-input(name='strEmail', type='email', placeholder='Enter Heading' ,required)
+            .uk-margin
+                input.uk-input(name='strEmail', type='email', placeholder='Enter Sub-Heading' ,required)
+            .uk-margin
+                textarea#inputdiv
+            .uk-margin
+                .uk-text-right
+                    button.uk-button.uk-button-primary(name='btnSignup', type='submit') CREATE NOTE
+                    button.uk-button.uk-button-default(type='button' uk-icon='icon: clock') SAVE 
+                    a(href='/dashboard')
+                        button.uk-button.uk-button-default(type='button') CANCEL
+
+    script.
+        CKEDITOR.config.customConfig = '/ckeditor/user-config.js';
+        CKEDITOR.replace('inputdiv');

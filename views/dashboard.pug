@@ -1,0 +1,26 @@
+extends dashb_layout
+
+block content
+    .content-header NOTES
+
+    .section
+        //note cards
+        a(href='/newnotes')
+            .card-holder.three_w
+                .uk-card.uk-card-primary.uk-card-hover.uk-card-body.card-height
+                    .card-icon-center
+                        span(uk-icon='icon: plus; ratio: 2')
+                
+        .card-holder.three_w
+            .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
+                .uk-card-badge.uk-label TEST
+                h3.uk-card-title Header
+                p Card content
+        .card-holder.three_w
+            .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
+                .uk-card-badge.uk-label TEST
+                h3.uk-card-title Header
+                p Card content
+
+    //- .content-card
+    //-     | Hello

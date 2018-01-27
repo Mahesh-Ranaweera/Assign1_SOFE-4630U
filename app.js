@@ -21,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//session setup
+app.set('trust proxy', 1);
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler

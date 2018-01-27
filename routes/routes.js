@@ -3,12 +3,29 @@ var express = require('express');
 var router = express.Router();
 var dbconn = require('../app/db');
 var encrypt= require('../app/encrypt');
+var session = require('express-session');
+
+//set the session
+router.use(session({
+  secret: 'HV3U00lcMahc84050VxX62xoMS67NhS4',
+  resave: false,
+  saveUninitialized: true,
+  path: '/'
+}));
+
+//start a session
+var sess;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {
-    title: 'Express'
-  });
+  /**Redirect user if session exists */
+  if(req.session.usersess){
+    res.redirect('/dashboard');
+  }else{
+    res.render('index', {
+      title: 'Notebook'
+    });
+  }
 });
 
 /**GET Signin Page */
@@ -20,7 +37,7 @@ router.get('/signin', function (req, res, next) {
   }
 
   res.render('signin', {
-    title: 'Signin',
+    title: 'Notebook:signin',
     alert: alert
   });
 });
@@ -41,8 +58,14 @@ router.post('/signin', function (req, res, next) {
 
       //Makesure email is correct and password is correct
       if(user_data[0].email == email && encrypt.compareHASH(passw, user_data[0].passw)){
+        /**Create a session for the user */
+        sess = req.session;
+        sess.usersess = true;
+        sess.email = user_data[0].email;
+        sess.name  = user_data[0].fname + ' ' + user_data[0].lname;
+
         /**User Authenticated */
-        res.redirect('/signin?notify=success');
+        res.redirect('/dashboard');
       }else{
         /**Password Error */
         res.redirect('/signin?notify=passw');
@@ -52,7 +75,7 @@ router.post('/signin', function (req, res, next) {
       res.redirect('/signin?notify=notfound');
     }
   });
-})
+});
 
 /**GET Signup Page */
 router.get('/signup', function (req, res, next) {
@@ -63,7 +86,7 @@ router.get('/signup', function (req, res, next) {
   }
 
   res.render('signup', {
-    title: 'Signup',
+    title: 'Notebook:signup',
     alert: alert
   });
 });
@@ -104,6 +127,41 @@ router.post('/signup', function (req, res, next) {
   } else {
     res.redirect('/signup?notify=passw');
   }
-})
+});
+
+/**GET Student Dashboard */
+router.get('/dashboard', function(req, res, next){
+
+  /**Makesure user session exists */
+  if(req.session.usersess){
+    username = sess.name;
+    useremail= sess.email;
+
+    res.render('dashboard', {
+      title: 'Dashboard',
+      name: username
+    });
+  }else{
+    res.redirect('/');
+  }
+});
+
+/**GET new notes */
+router.get('/newnotes', function(req, res, next){
+  res.render('newnotes', {
+    title: 'Dashboard'
+  });
+});
+
+/**SIGNOUT */
+router.get('/signout', function(req, res, next){
+  req.session.destroy(function(err){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect('/');
+    }
+  });
+}); 
 
 module.exports = router;
