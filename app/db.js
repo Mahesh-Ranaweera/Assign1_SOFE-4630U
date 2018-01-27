@@ -49,23 +49,29 @@ var addUSER = function(data, callback){
 
     client.query(sql, values, (err, res) => {
         if(err){
-            //console.log(err.stack);
-            callback(false);
+            //console.log(err);
+            
+            //duplicate KEY
+            if(err.code == 23505){
+                callback(-1);
+            }else{
+                callback(0);
+            }
         }else{
             //console.log(res);
-            callback(true);
+            callback(1);
         }
     });
 }
 
-var getUSER = function(data, callback){
+var getUSER = function(useremail, callback){
     
     var sql = "SELECT email, fname, lname, passw FROM users WHERE email=$1";
-    var values = [data.email];
+    var values = [useremail];
 
     client.query(sql, values, (err, res) => {
         if(err){
-            console.log(err);
+            //console.log(err);
             callback(err);
         }else{
             if(res.rows.length == 0){

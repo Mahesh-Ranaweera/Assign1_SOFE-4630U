@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 var dbconn = require('../app/db');
@@ -22,29 +23,27 @@ router.post('/signin', function (req, res, next) {
   var email = req.body.strEmail;
   var passw = req.body.strPassw;
 
-  data = {
-     email: email
-  }
+  dbconn.getUSER(email, function(state){
 
-  dbconn.getUSER(data, function(state){
-
-    user_data = JSON.stringify(state[0]);
-    console.log(user_data);
-    console.log(user_data["email"]);
+    /**JSON Objects */
+    user_data = JSON.stringify(state);
 
     //check if user exists
     if(state != null){
-      //authenticate the user
-      if(user_data.email == email){
-        console.log("Correct email");
+      user_data = JSON.parse(user_data);
+
+      //Makesure email is correct and password is correct
+      if(user_data[0].email == email && encrypt.compareHASH(passw, user_data[0].passw)){
+        /**User Authenticated */
+        res.redirect('/signin?notify=success');
       }else{
-        console.log("wrong email");
+        /**Password Error */
+        res.redirect('/signin?notify=passw');
       }
     }else{
-      console.log("USER DOES NOT EXISTS");
+      /**User not found */
+      res.redirect('/signin?notify=notfound');
     }
-    
-    res.redirect('/signin');
   });
 })
 
@@ -76,16 +75,20 @@ router.post('/signup', function (req, res, next) {
     //console.log(data);
     /**Add the data to db */
     dbconn.addUSER(data, function(state){
-      if(state){
-        console.log('Entered');
+      if(state == 1){
+        //console.log('Entered');
+        res.redirect('/signup?notify=success');
+      }else if(state == -1){
+        //console.log('Duplicate');
+        res.redirect('/signup?notify=duplicate');
       }else{
-        console.log('Error');
+        //console.log('Error');
+        res.redirect('/signup?notify=error')
       }
-      res.redirect('/signup?passw=success');
     });
 
   } else {
-    res.redirect('/signup?passw=error');
+    res.redirect('/signup?notify=passw');
   }
 })
 
