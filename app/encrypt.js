@@ -12,5 +12,6 @@ var compareHASH = function(passw, hash){
     return bcrypt.compareSync(passw, hash);
 }
 
+/**Export the modules */
 module.exports.passwHASH = passwHASH;
 module.exports.compareHASH = compareHASH;

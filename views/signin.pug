@@ -28,3 +28,15 @@ block html
 
                                     a(href='/signup')
                                         button.uk-button.uk-button-default(type='button') SIGN UP
+                    //Alert the user
+                    if (alert == 'passw')
+                        .uk-margin
+                            .uk-alert-warning(uk-alert)
+                                a.uk-alert-close(uk-close)
+                                p Authentication failed, Try Again
+
+                    if (alert == 'notfound')
+                        .uk-margin
+                            .uk-alert-warning(uk-alert)
+                                a.uk-alert-close(uk-close)
+                                p User email not found, <a href='/signup'>Sign Up<a>

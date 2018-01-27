@@ -13,8 +13,15 @@ router.get('/', function (req, res, next) {
 
 /**GET Signin Page */
 router.get('/signin', function (req, res, next) {
+  var alert = null;
+
+  if(req.query.notify != null){
+    alert = req.query.notify;
+  }
+
   res.render('signin', {
-    title: 'Signin'
+    title: 'Signin',
+    alert: alert
   });
 });
 
@@ -49,8 +56,15 @@ router.post('/signin', function (req, res, next) {
 
 /**GET Signup Page */
 router.get('/signup', function (req, res, next) {
+  var alert = null;
+
+  if(req.query.notify != null){
+    alert = req.query.notify;
+  }
+
   res.render('signup', {
-    title: 'Signup'
+    title: 'Signup',
+    alert: alert
   });
 });
 
