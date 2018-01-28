@@ -3,18 +3,26 @@ extends header
 block html
     .section
         .uk-card.uk-card-default.uk-card-body
-            .uk-margin
-                input.uk-input(name='strEmail', type='email', placeholder='Enter Heading' ,required)
-            .uk-margin
-                input.uk-input(name='strEmail', type='email', placeholder='Enter Sub-Heading' ,required)
-            .uk-margin
-                textarea#inputdiv
-            .uk-margin
-                .uk-text-right
-                    button.uk-button.uk-button-primary(name='btnSignup', type='submit') CREATE NOTE
-                    button.uk-button.uk-button-default(type='button' uk-icon='icon: clock') SAVE 
-                    a(href='/dashboard')
-                        button.uk-button.uk-button-default(type='button') CANCEL
+            form(method='POST', action='/savenote')
+                .uk-margin
+                    input.uk-input(name='strHead', type='text', placeholder='Enter Heading', value=head ,required)
+                .uk-margin
+                    input.uk-input(name='strSubhead', type='text', placeholder='Enter Sub-Heading', value=subhead ,required)
+                .uk-margin
+                    textarea#inputdiv(name='strContent', required) #{content}
+                .uk-margin
+                    .uk-text-right
+                        button.uk-button.uk-button-primary(name='btnSignup', type='submit') CREATE NOTE
+                        button.uk-button.uk-button-default(type='button' uk-icon='icon: clock') SAVE 
+                        a(href='/dashboard')
+                            button.uk-button.uk-button-default(type='button') CANCEL
+            
+            //Alert the user
+            if (alert == 'error')
+                .uk-margin
+                    .uk-alert-warning(uk-alert)
+                        a.uk-alert-close(uk-close)
+                        p Something went wrong, failed to save the note
 
     script.
         CKEDITOR.config.customConfig = '/ckeditor/user-config.js';

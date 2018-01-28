@@ -10,17 +10,10 @@ block content
                 .uk-card.uk-card-primary.uk-card-hover.uk-card-body.card-height
                     .card-icon-center
                         span(uk-icon='icon: plus; ratio: 2')
-                
-        .card-holder.three_w
-            .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
-                .uk-card-badge.uk-label TEST
-                h3.uk-card-title Header
-                p Card content
-        .card-holder.three_w
-            .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
-                .uk-card-badge.uk-label TEST
-                h3.uk-card-title Header
-                p Card content
 
-    //- .content-card
-    //-     | Hello
+        for item, i in notes
+            .card-holder.three_w
+                .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
+                    .uk-card-badge.uk-label #{i+1}
+                    h3.uk-card-title #{notes[i].heading}
+                    p #{notes[i].subhead}
