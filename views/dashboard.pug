@@ -14,6 +14,40 @@ block content
         for item, i in notes
             .card-holder.three_w
                 .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
-                    .uk-card-badge.uk-label #{i+1}
-                    h3.uk-card-title #{notes[i].heading}
-                    p #{notes[i].subhead}
+                    - var id =  notes[i].id
+                    - var content = notes[i]
+                    - var modal = 'target: #modal' + i
+
+                    .card-body.smooth(uk-toggle=modal)
+                        .uk-card-badge.uk-label #{i+1}
+                        .uk-card-title #{notes[i].heading}
+                        p #{notes[i].subhead}
+
+                    .card-footer
+                        form(method='POST', action='/editnote')
+                            input(type='hidden', name='strID', value=id)
+                            input(type='hidden', name='strContent', value=content)
+                            button.f-icon.edit(type='submit', title='Edit Note')
+                                span(uk-icon='icon: file-edit')
+
+                        form(method='POST', action='/deletenote')
+                            input(type='hidden', name='strID', value=id)
+                            button.f-icon.delete(type='submit', title='Edit Note')
+                                span(uk-icon='icon: trash')
+
+
+                //modal for notes
+                .uk-modal-full(id=modal, uk-modal)
+                    .uk-modal-dialog
+                        - var divhide = 'modal_hide('+modal+');'
+                        button.uk-modal-close-full.uk-close-large(type='button', uk-close, onclick=divhide)
+                        .uk-padding-large(uk-height-viewport)
+                            .uk-card-title #{notes[i].heading}
+                            p #{notes[i].subhead}
+                            hr.uk-margin-small
+                            p #{notes[i].content}
+
+    script.
+        function modal_hide(modalid){
+            UIkit.modal(modalid).hide();
+        }

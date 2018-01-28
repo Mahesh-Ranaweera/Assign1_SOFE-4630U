@@ -407,3 +407,55 @@ a {
     padding: 0 0 20px 5px;
     line-height: 24px;
 }
+
+.card-footer {
+    height: 40px;
+    width: 100%;
+    float: left;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(33, 150, 243, 0.05);
+}
+
+.card-body {
+    width: 100%;
+    height: auto;
+    float: left;
+    padding: 2px;
+    box-sizing: border-box;
+    border-radius: 2.5px;
+    cursor: pointer;
+}
+
+.card-body:hover {
+    background-color: rgba(33, 150, 243, 0.05);
+}
+
+.f-icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+}
+
+.edit {
+    color: var(--blue-prim);
+}
+
+.edit:hover {
+    color: var(--blue-sec);
+}
+
+.delete {
+    color: var(--red-prim);
+}
+
+.delete:hover {
+    color: var(--red-sec);
+}

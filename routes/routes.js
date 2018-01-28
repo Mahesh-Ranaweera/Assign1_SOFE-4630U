@@ -204,6 +204,31 @@ router.post('/savenote', function(req, res, next) {
     }
 });
 
+/**DELETE note */
+router.post('/deletenote', function(req, res, next) {
+    var id = req.body.strID;
+
+    /**Makesure user session exists */
+    if (req.session.usersess) {
+
+        //delete note
+        dbconn.deleteNote(id, function(state) {
+            if (state == 1) {
+                res.redirect('/dashboard');
+            } else {
+                res.redirect('/dashboard');
+            }
+        });
+    } else {
+        res.redirect('/');
+    }
+});
+
+/**EDIT note */
+router.post('/editnote', function(req, res, next) {
+    console.log('edit');
+    res.redirect('/dashboard');
+});
 
 /**SIGNOUT */
 router.get('/signout', function(req, res, next) {

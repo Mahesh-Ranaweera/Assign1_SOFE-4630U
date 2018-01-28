@@ -122,7 +122,7 @@ var getNotes = function(useremail, callback) {
 
 /**Delete note */
 var deleteNote = function(id, callback) {
-    var sql = "SELECT FROM notes WHERE id=$1";
+    var sql = "DELETE FROM notes WHERE id=$1";
     var values = [id];
 
     client.query(sql, values, (err, res) => {
