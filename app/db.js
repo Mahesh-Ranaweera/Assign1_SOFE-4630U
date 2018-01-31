@@ -2,16 +2,18 @@
  * Contain the connection to the mongo database
  */
 
+var remoteDB = require("./config");
+
 const {
     Client
 } = require('pg')
 
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'webapp',
-    password: 'a2fb22ce710899f6e455b3984ee16930',
-    post: 5432,
+    user: remoteDB.dbconnect.dbuser,
+    host: remoteDB.dbconnect.dbhost,
+    database: remoteDB.dbconnect.db,
+    password: remoteDB.dbconnect.dbpassw,
+    post: remoteDB.dbconnect.dbport,
 });
 
 client.connect();
