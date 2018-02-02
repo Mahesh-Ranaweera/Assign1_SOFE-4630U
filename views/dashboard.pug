@@ -3,6 +3,14 @@ extends dashb_layout
 block content
     .content-header NOTES
 
+    .section 
+        a.uk-button.uk-button-default(href='#modal-center' uk-toggle) Open
+
+        #modal-center.uk-flex-top(uk-modal)
+            .uk-modal-dialog.uk-modal-body.uk-margin-auto-vertical  
+                button.uk-modal-close-default(type='button' uk-close)
+                p Hello content
+
     .section
         //note cards
         a(href='/newnotes', title='Create New Notes')
@@ -12,16 +20,19 @@ block content
                         span(uk-icon='icon: plus; ratio: 2')
 
         for item, i in notes
+            //-define the variables
+            - var id =  notes[i].id
+            - var content = notes[i]
+            - var target = 'target: #modal' + i
+            - var modalID = 'modal' + i
+
             .card-holder.three_w
                 .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
-                    - var id =  notes[i].id
-                    - var content = notes[i]
-                    - var modal = 'target: #modal' + i
 
-                    .card-body.smooth(uk-toggle=modal)
-                        .uk-card-badge.uk-label #{i+1}
-                        .uk-card-title #{notes[i].heading}
-                        p #{notes[i].subhead}
+                    .card-body.smooth(uk-toggle=target)
+                            .uk-card-badge.uk-label #{i+1}
+                            .uk-card-title #{notes[i].heading}
+                            p #{notes[i].subhead}
 
                     .card-footer
                         form(method='POST', action='/editnote')
@@ -35,19 +46,15 @@ block content
                             button.f-icon.delete(type='submit', title='Edit Note')
                                 span(uk-icon='icon: trash')
 
-
-                //modal for notes
-                .uk-modal-full(id=modal, uk-modal)
-                    .uk-modal-dialog
-                        - var divhide = 'modal_hide('+modal+');'
-                        button.uk-modal-close-full.uk-close-large(type='button', uk-close, onclick=divhide)
-                        .uk-padding-large(uk-height-viewport)
-                            .uk-card-title #{notes[i].heading}
-                            p #{notes[i].subhead}
-                            hr.uk-margin-small
-                            p #{notes[i].content}
-
-    script.
-        function modal_hide(modalid){
-            UIkit.modal(modalid).hide();
-        }
+            //-modal for notes
+            div.uk-flex-top(id=modalID, uk-modal)
+                .uk-modal-dialog.uk-modal-body.uk-margin-auto-vertical
+                    button.uk-modal-close-default(type='button', uk-close)
+                    .uk-modal-header
+                        h2.uk-modal-title #{notes[i].heading}
+                        p #{notes[i].subhead}
+                    
+                    - var notesinfo = notes[i].content 
+                    .uk-modal-body(uk-overflow-auto)
+                        | !{notesinfo}
+                        

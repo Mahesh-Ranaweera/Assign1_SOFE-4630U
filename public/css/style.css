@@ -459,3 +459,11 @@ a {
 .delete:hover {
     color: var(--red-sec);
 }
+
+
+/**top layer**/
+
+top-modal {
+    position: absolute;
+    z-index: 50000;
+}
