@@ -176,13 +176,22 @@ router.get('/newnotes', function(req, res, next) {
 
 /**SAVE note */
 router.post('/savenote', function(req, res, next) {
+
+    /**Get current date time */
+    var date = new Date();
+    var curr_date = date.getDate();
+    var curr_month = date.getMonth();
+    var curr_year = date.getFullYear();
+    var dbdate = curr_date + '-' + curr_month + '-' + curr_year;
+
     /**Makesure user session exists */
     if (req.session.usersess) {
         data = {
             email: sess.email,
             head: req.body.strHead,
             subhead: req.body.strSubhead,
-            content: req.body.strContent
+            content: req.body.strContent,
+            date: dbdate
         }
 
         //console.log(data);

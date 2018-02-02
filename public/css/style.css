@@ -467,3 +467,12 @@ top-modal {
     position: absolute;
     z-index: 50000;
 }
+
+.date-info {
+    width: auto;
+    line-height: 40px;
+    height: 40px;
+    padding-right: 10px;
+    opacity: 0.84;
+    float: right;
+}

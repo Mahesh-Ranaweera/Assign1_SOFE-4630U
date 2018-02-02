@@ -34,7 +34,8 @@ const createTB =
     'email VARCHAR(100) NOT NULL,' +
     'heading VARCHAR(200) NOT NULL,' +
     'subhead VARCHAR(200) NOT NULL,' +
-    'content TEXT NOT NULL);'
+    'content TEXT NOT NULL,' +
+    'date VARCHAR(25) NOT NULL);';
 
 client.query(createTB, (err, res) => {
     if (err) {
@@ -90,8 +91,8 @@ var getUSER = function(useremail, callback) {
 /**Add notes */
 var addNote = function(data, callback) {
 
-    var sql = "INSERT INTO notes(email, heading, subhead, content) values($1, $2, $3, $4)";
-    var values = [data.email, data.head, data.subhead, data.content];
+    var sql = "INSERT INTO notes(email, heading, subhead, content, date) values($1, $2, $3, $4, $5)";
+    var values = [data.email, data.head, data.subhead, data.content, data.date];
 
     client.query(sql, values, (err, res) => {
         if (err) {
@@ -105,7 +106,7 @@ var addNote = function(data, callback) {
 /**GET notes from db */
 var getNotes = function(useremail, callback) {
 
-    var sql = "SELECT id, email, heading, subhead, content FROM notes WHERE email=$1 ORDER BY id DESC";
+    var sql = "SELECT id, email, heading, subhead, content, date FROM notes WHERE email=$1 ORDER BY id DESC";
     var values = [useremail];
 
     client.query(sql, values, (err, res) => {
