@@ -279,8 +279,6 @@ router.post('/editnote', function(req, res, next) {
 /**UPDATE note */
 router.post('/updatenote', function(req, res, next) {
 
-    console.log(req.body.strShare);
-
     /**Makesure user session exists */
     if (req.session.usersess) {
         data = {
@@ -303,25 +301,21 @@ router.post('/updatenote', function(req, res, next) {
 
         //console.log(data);
         dbconn.updateNote(data, function(state) {
+            var alert = null;
             if (state == 1) {
-                res.render('updatenotes', {
-                    title: 'Dashboard',
-                    head: data.head,
-                    subhead: data.subhead,
-                    content: data.content,
-                    share: data.share,
-                    alert: 'updated'
-                });
+                alert = 'updated';
             } else {
-                res.render('updatenotes', {
-                    title: 'Dashboard',
-                    head: data.head,
-                    subhead: data.subhead,
-                    content: data.content,
-                    share: data.share,
-                    alert: 'error'
-                });
+                alert = 'error';
             }
+
+            res.render('updatenotes', {
+                title: 'Dashboard',
+                head: data.head,
+                subhead: data.subhead,
+                content: data.content,
+                share: data.share,
+                alert: alert
+            });
         });
     } else {
         res.redirect('/');

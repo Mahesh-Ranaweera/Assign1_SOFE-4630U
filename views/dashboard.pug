@@ -16,6 +16,7 @@ block content
                 //-define the variables
                 - var id =  notes[i].id
                 - var content = notes[i]
+                - var share = notes[i].share
                 - var target = 'target: #modal' + i
                 - var modalID = 'modal' + i
                 - var targetDEL = 'target: #delete' + i
@@ -25,7 +26,11 @@ block content
                     .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
 
                         .card-body.smooth(uk-toggle=target)
-                                .uk-card-badge.uk-label #{i+1}
+                                if (share == 0)
+                                    .uk-card-badge.uk-label Private
+                                if (share == 1)
+                                    .uk-card-badge.uk-label Public
+
                                 .uk-card-title #{notes[i].heading}
                                 p #{notes[i].subhead}
 
