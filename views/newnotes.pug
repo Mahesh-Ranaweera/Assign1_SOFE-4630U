@@ -13,6 +13,12 @@ block html
                         option(value=0) Private Note
                         option(value=1) Public Notes
                 .uk-margin
+                    .uk-placeholder.uk-text-center
+                        span(uk-iocn='icon: file-upload')
+                        div(uk-form-custom)
+                            input#fileinput(type='file', accept='text/plain' onchange='uploadFile(event);')
+                            span.uk-link Select the file
+                .uk-margin
                     textarea#inputdiv(name='strContent', required) #{content}
                 .uk-margin
                     .uk-text-right
