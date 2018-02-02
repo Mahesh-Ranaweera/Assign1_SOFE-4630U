@@ -9,15 +9,18 @@ block html
                 .uk-margin
                     input.uk-input(name='strSubhead', type='text', placeholder='Enter Sub-Heading', value=subhead ,required)
                 .uk-margin
+                    select.uk-select(title='Select sharing options', name='strShare')
+                        option(value=0) Private Note
+                        option(value=1) Public Notes
+                .uk-margin
                     textarea#inputdiv(name='strContent', required) #{content}
                 .uk-margin
                     .uk-text-right
                         button.uk-button.uk-button-primary(name='btnNewNote', type='submit') CREATE NOTE
-                        button.uk-button.uk-button-default(type='button' uk-icon='icon: clock') SAVE 
                         a(href='/dashboard')
-                            button.uk-button.uk-button-default(type='button') CANCEL
+                            button.uk-button.uk-button-default(type='button') HOME
             
-            //Alert the user
+            //-Alert the user
             if (alert == 'error')
                 .uk-margin
                     .uk-alert-warning(uk-alert)

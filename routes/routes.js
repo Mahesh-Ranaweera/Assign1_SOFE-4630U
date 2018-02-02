@@ -199,7 +199,8 @@ router.post('/savenote', function(req, res, next) {
             head: req.body.strHead,
             subhead: req.body.strSubhead,
             content: req.body.strContent,
-            date: dbdate
+            date: dbdate,
+            share: req.body.strShare
         }
 
         //console.log(data);
@@ -212,6 +213,7 @@ router.post('/savenote', function(req, res, next) {
                     head: data.head,
                     subhead: data.subhead,
                     content: data.content,
+                    share: data.share,
                     alert: 'error'
                 });
             }
@@ -266,6 +268,7 @@ router.post('/editnote', function(req, res, next) {
             head: json_data.heading,
             subhead: json_data.subhead,
             content: json_data.content,
+            share: json_data.share,
             error: null
         });
     } else {
@@ -276,7 +279,7 @@ router.post('/editnote', function(req, res, next) {
 /**UPDATE note */
 router.post('/updatenote', function(req, res, next) {
 
-    console.log(req.body.strContent);
+    console.log(req.body.strShare);
 
     /**Makesure user session exists */
     if (req.session.usersess) {
@@ -286,6 +289,7 @@ router.post('/updatenote', function(req, res, next) {
             head: note_info.head,
             subhead: note_info.subhead,
             content: req.body.strContent,
+            share: req.body.strShare,
             date: note_info.date
         }
 
@@ -300,13 +304,21 @@ router.post('/updatenote', function(req, res, next) {
         //console.log(data);
         dbconn.updateNote(data, function(state) {
             if (state == 1) {
-                res.redirect('/dashboard');
+                res.render('updatenotes', {
+                    title: 'Dashboard',
+                    head: data.head,
+                    subhead: data.subhead,
+                    content: data.content,
+                    share: data.share,
+                    alert: 'updated'
+                });
             } else {
                 res.render('updatenotes', {
                     title: 'Dashboard',
                     head: data.head,
                     subhead: data.subhead,
                     content: data.content,
+                    share: data.share,
                     alert: 'error'
                 });
             }

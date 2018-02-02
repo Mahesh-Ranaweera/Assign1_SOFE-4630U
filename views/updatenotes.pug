@@ -9,19 +9,35 @@ block html
                 .uk-margin
                     input.uk-input(name='strSubhead', type='text', placeholder='Enter Sub-Heading', value=subhead ,disabled)
                 .uk-margin
+                    select.uk-select(title='Select sharing options', name='strShare')
+                        if (share == 0)
+                            option(value=0, selected) Private Note
+                            option(value=1) Public Notes
+                        if (share == 1)
+                            option(value=0) Private Note
+                            option(value=1, selected) Public Notes
+
+                .uk-margin
                     textarea#inputdiv(name='strContent', required) #{content}
+
+                //-Alert the user
+                if (alert == 'error')
+                    .uk-margin
+                        .uk-alert-warning(uk-alert)
+                            a.uk-alert-close(uk-close)
+                            p Something went wrong, failed to save the note
+                
+                if (alert == 'updated')
+                    .uk-margin
+                        .uk-alert-primary(uk-alert)
+                            a.uk-alert-close(uk-close)
+                            p Note successfully updated
+                
                 .uk-margin
                     .uk-text-right
                         button.uk-button.uk-button-primary(name='btnUpdateNote', type='submit') UPDATE NOTE
                         a(href='/dashboard')
-                            button.uk-button.uk-button-default(type='button') CANCEL
-            
-            //-Alert the user
-            if (alert == 'error')
-                .uk-margin
-                    .uk-alert-warning(uk-alert)
-                        a.uk-alert-close(uk-close)
-                        p Something went wrong, failed to save the note
+                            button.uk-button.uk-button-default(type='button') HOME
 
     script.
         CKEDITOR.config.customConfig = '/ckeditor/user-config.js';
