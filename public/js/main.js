@@ -1,12 +1,15 @@
 /**read and uplaod file content*/
-function uploadFile() {
-    var targetF = event.target;
+var uploadFile = function(event) {
+    var targetF = event.target.files[0];
 
-    var f_reader = new FileReader();
-    f_reader.onload = function() {
-        var content = f_reader.result;
-        var textarea = document.getElementById('inputdiv').value = content;
-        console.log(content);
+    if (targetF) {
+        var f_reader = new FileReader();
+        f_reader.onload = function() {
+            var content = f_reader.result;
+            var textarea = document.getElementById('inputdiv');
+            textarea.value = content;
+            console.log(content);
+        }
+        f_reader.readAsText(targetF);
     }
-    f_reader.readAsText(targetF.files[0]);
 }
