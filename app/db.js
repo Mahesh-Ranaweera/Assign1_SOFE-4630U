@@ -137,9 +137,24 @@ var deleteNote = function(id, callback) {
     });
 }
 
+/**Update note */
+var updateNote = function(data, callback) {
+    var sql = "UPDATE notes SET content=$1 WHERE id=$2";
+    var values = [data.content, data.id];
+
+    client.query(sql, values, (err, res) => {
+        if (err) {
+            callback(0);
+        } else {
+            callback(1);
+        }
+    });
+}
+
 /**Export the modules */
 module.exports.addUSER = addUSER;
 module.exports.getUSER = getUSER;
 module.exports.addNote = addNote;
 module.exports.getNotes = getNotes;
 module.exports.deleteNote = deleteNote;
+module.exports.updateNote = updateNote;

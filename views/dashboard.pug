@@ -32,7 +32,6 @@ block content
                         .card-footer
                             //-edit button
                             form(method='POST', action='/editnote')
-                                input(type='hidden', name='strID', value=id)
                                 input(type='hidden', name='strContent', value=content)
                                 button.f-icon.edit(type='submit', title='Edit Note')
                                     span(uk-icon='icon: file-edit')

@@ -15,6 +15,14 @@ router.use(session({
 //start a session
 var sess;
 
+//store update note info
+var note_info = {
+    id: null,
+    head: null,
+    subhead: null,
+    date: null
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     /**Redirect user if session exists */
@@ -235,8 +243,77 @@ router.post('/deletenote', function(req, res, next) {
 
 /**EDIT note */
 router.post('/editnote', function(req, res, next) {
-    console.log('edit');
-    res.redirect('/dashboard');
+
+    var json_data = JSON.parse(req.body.strContent);
+    //console.log(json_data)
+
+    /**Makesure user session exists */
+    if (req.session.usersess) {
+        data = {
+            email: sess.email
+        }
+
+        //secure note id
+        note_info = {
+            id: json_data.id,
+            head: json_data.heading,
+            subhead: json_data.subhead,
+            date: json_data.date
+        }
+
+        res.render('updatenotes', {
+            title: 'Dashboard',
+            head: json_data.heading,
+            subhead: json_data.subhead,
+            content: json_data.content,
+            error: null
+        });
+    } else {
+        res.redirect('/');
+    }
+});
+
+/**UPDATE note */
+router.post('/updatenote', function(req, res, next) {
+
+    console.log(req.body.strContent);
+
+    /**Makesure user session exists */
+    if (req.session.usersess) {
+        data = {
+            email: sess.email,
+            id: note_info.id,
+            head: note_info.head,
+            subhead: note_info.subhead,
+            content: req.body.strContent,
+            date: note_info.date
+        }
+
+        //-reset the info
+        note_info = {
+            id: null,
+            head: null,
+            subhead: null,
+            date: null
+        }
+
+        //console.log(data);
+        dbconn.updateNote(data, function(state) {
+            if (state == 1) {
+                res.redirect('/dashboard');
+            } else {
+                res.render('updatenotes', {
+                    title: 'Dashboard',
+                    head: data.head,
+                    subhead: data.subhead,
+                    content: data.content,
+                    alert: 'error'
+                });
+            }
+        });
+    } else {
+        res.redirect('/');
+    }
 });
 
 /**SIGNOUT */
