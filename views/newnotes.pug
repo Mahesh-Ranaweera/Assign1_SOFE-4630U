@@ -3,7 +3,7 @@ extends header
 block html
     .section
         .uk-card.uk-card-default.uk-card-body
-            form(method='POST', action='/savenote')
+            form(name='newnote' method='POST', action='/savenote')
                 .uk-margin
                     input.uk-input(name='strHead', type='text', placeholder='Enter Heading', value=head ,required)
                 .uk-margin
@@ -16,7 +16,7 @@ block html
                     .uk-placeholder.uk-text-center
                         span(uk-iocn='icon: file-upload')
                         div(uk-form-custom)
-                            input#fileinput(type='file', accept='text/plain' onchange='uploadFile(event);')
+                            input#fileinput(type='file', accept='text/plain' onchange='uploadFile();')
                             span.uk-link Select the file
                 .uk-margin
                     textarea#inputdiv(name='strContent', required) #{content}
@@ -36,19 +36,3 @@ block html
     script.
         CKEDITOR.config.customConfig = '/ckeditor/user-config.js';
         CKEDITOR.replace('inputdiv');
-
-        /**read and uplaod file content*/
-        var uploadFile = function(event) {
-            var targetF = event.target.files[0];
-
-            if (targetF) {
-                var f_reader = new FileReader();
-                f_reader.onload = function() {
-                    var content = f_reader.result;
-                    var textarea = document.getElementById('inputdiv');
-                    textarea.value = content;
-                    console.log(content);
-                }
-                f_reader.readAsText(targetF);
-            }
-        }
