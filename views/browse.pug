@@ -12,12 +12,10 @@ block content
                 | BROWSE NOTES
 
     .section
-        //-note cards
-        a(href='/newnotes', title='Create New Notes')
-            .card-holder.three_w
-                .uk-card.uk-card-primary.uk-card-hover.uk-card-body.card-height
-                    .card-icon-center
-                        span(uk-icon='icon: plus; ratio: 2')
+        //-search notes
+        form.uk-search.uk-search-large.uk-width-1-1(method='POST', action='/searchnotes')
+            span(uk-search-icon)
+            input.uk-search-input(name='searchquery', type='search', placeholder='Search Notes ..')
 
         if notes != null
             for item, i in notes
@@ -43,32 +41,9 @@ block content
                                 p #{notes[i].subhead}
 
                         .card-footer
-                            //-edit button
-                            form(method='POST', action='/editnote')
-                                input(type='hidden', name='strContent', value=content)
-                                button.f-icon.edit(type='submit', title='Edit Note')
-                                    span(uk-icon='icon: file-edit')
-                            
-                            //-delete button
-                            button.f-icon.delete(type='submit', title='Delete Note', uk-toggle=targetDEL)
-                                span(uk-icon='icon: trash')
-
                             //-date
                             .date-info
                                 b #{notes[i].date}
-
-                //-delete modal
-                div.uk-flex-top(id=modalDEL, uk-modal)
-                    .uk-modal-dialog.uk-modal-body.uk-margin-auto-vertical
-                        button.uk-modal-close-default(type='button', uk-close)
-                        .uk-modal-header
-                            h2.uk-modal-title DELETE NOTE
-                            p Are you sure you want to delete the note ?
-                        .uk-modal-footer.uk-text-right
-                            form(method='POST', action='/deletenote')
-                                input(type='hidden', name='strID', value=id)
-                                button.uk-button.uk-button-primary(type='submit') YES
-                                button.uk-button.uk-modal-close.uk-button-default(type='button') NO
 
                 //-modal for notes
                 div.uk-flex-top(id=modalID, uk-modal)
@@ -81,4 +56,3 @@ block content
                         - var notesinfo = notes[i].content 
                         .uk-modal-body(uk-overflow-auto)
                             | !{notesinfo}
-                            

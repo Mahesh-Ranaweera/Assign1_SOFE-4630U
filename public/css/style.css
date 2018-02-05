@@ -408,6 +408,24 @@ a {
     line-height: 24px;
 }
 
+.header-tab {
+    width: auto;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    margin-right: 10px;
+    color: #222328 !important;
+}
+
+.header-tab:hover {
+    color: #0D8AEE !important;
+}
+
+.header-tab,
+a {
+    color: #222328 !important;
+}
+
 .card-footer {
     height: 40px;
     width: 100%;

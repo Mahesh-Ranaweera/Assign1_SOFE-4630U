@@ -322,6 +322,62 @@ router.post('/updatenote', function(req, res, next) {
     }
 });
 
+/**GET browse notes */
+router.get('/browsenotes', function(req, res, next) {
+
+    /**Makesure user session exists */
+    if (req.session.usersess) {
+        username = sess.name;
+        useremail = sess.email;
+
+        if (req.query.search != null) {
+            dbconn.searchnotes(data, function(state) {
+
+                /**GET JSON data */
+                notes_data = JSON.stringify(state);
+                notes_data = JSON.parse(notes_data);
+                //console.log(notes_data);
+
+                res.render('browse', {
+                    title: 'Dashboard',
+                    name: username,
+                    notes: notes_data
+                });
+            });
+        } else {
+            dbconn.publicnotes(function(state) {
+
+                /**GET JSON data */
+                notes_data = JSON.stringify(state);
+                notes_data = JSON.parse(notes_data);
+                //console.log(notes_data);
+
+                res.render('browse', {
+                    title: 'Dashboard',
+                    name: username,
+                    notes: notes_data
+                });
+            });
+        }
+    } else {
+        res.redirect('/');
+    }
+});
+
+/**POST search notes */
+router.post('/searchnotes', function(req, res, next) {
+    /**Makesure user session exists */
+    if (req.session.usersess) {
+        data = {
+            query: req.body.searchquery
+        }
+
+        res.redirect('/browsenotes?search=' + data.query);
+    } else {
+        res.redirect('/');
+    }
+});
+
 /**SIGNOUT */
 router.get('/signout', function(req, res, next) {
     req.session.destroy(function(err) {

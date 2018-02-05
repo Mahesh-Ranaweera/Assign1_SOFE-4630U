@@ -152,6 +152,42 @@ var updateNote = function(data, callback) {
     });
 }
 
+/**get all public notes */
+var publicnotes = function(callback) {
+    var sql = "SELECT * FROM notes WHERE share=1";
+
+    client.query(sql, (err, res) => {
+        if (err) {
+            callback(err);
+        } else {
+            if (res.rows.length == 0) {
+                callback(null);
+            } else {
+                callback(res.rows);
+            }
+        }
+    })
+}
+
+/**get all search query */
+var searchnotes = function(data, callback) {
+    var sql = "SELECT * FROM notes WHERE share=1 AND LOWER(heading) LIKE '%" + data.query + "%' OR LOWER(subhead) LIKE '%" + data.query + "%' OR date LIKE '%" + data.query + "%'";
+
+    console.log(sql, data.query)
+
+    client.query(sql, (err, res) => {
+        if (err) {
+            callback(err);
+        } else {
+            if (res.rows.length == 0) {
+                callback(null);
+            } else {
+                callback(res.rows);
+            }
+        }
+    })
+}
+
 /**Export the modules */
 module.exports.addUSER = addUSER;
 module.exports.getUSER = getUSER;
@@ -159,3 +195,5 @@ module.exports.addNote = addNote;
 module.exports.getNotes = getNotes;
 module.exports.deleteNote = deleteNote;
 module.exports.updateNote = updateNote;
+module.exports.publicnotes = publicnotes;
+module.exports.searchnotes = searchnotes;
