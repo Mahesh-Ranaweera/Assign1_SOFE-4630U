@@ -24,8 +24,8 @@ NodeJS, Express and uses PostgreSQL as the database service.
 ## Setting up the application for local testing
 
 ### Install Prerequisite
-> NodeJS
-> PostgreSQL
+- NodeJS
+- PostgreSQL
 
 1. NodeJS
 
