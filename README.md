@@ -1,22 +1,61 @@
-# Assign1_SOFE-4630U
+# Assign1_SOFE-4630U :: Notebook WebApp
 Assignment 1: CloudComputing
 
-## Setting up PostgreSQL
-```sh
-wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+Notebook is an web application that allows users such as students to take notes online, upload and share them to the public. 
+App allows users to register and use the service. Users are able to upload their current notes and save them privately or share them
+publicly to the other users in the platform. Users are able to search publicly available notes and view them. This web-app is build using 
+NodeJS, Express and uses PostgreSQL as the database service.
 
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+## Web App Link
+> https://collaborative-notebook.herokuapp.com
 
-sudo apt-get update
+## Web-APP Features
+* User Authentication
+* Allow to create new notes, edit and delete them
+* Able to upload notes from a text file
+* Notes can be made available to other users that are registered in the platform
+* Allow users to search publicly available notes
+* Responsive interface
 
-sudo apt-get install postgresql postgresql-contrib
-```
+---
+## Setting up the application for local testing
 
-## Connect to PostgreSQL
-```sh
-service postgresql start
+### Install Prerequisite
+> NodeJS
+> PostgreSQL
 
-sudo su - postgres
+1. NodeJS
 
-psql
-```
+2. Setting up PostgreSQL
+    ```sh
+    wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+
+    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+
+    sudo apt-get update
+
+    sudo apt-get install postgresql postgresql-contrib
+    ```
+
+    * Connect to PostgreSQL
+    ```sh
+    service postgresql start
+
+    sudo su - postgres
+
+    psql
+    ```
+
+    3. Download the source files
+    ```js
+    git clone git@github.com:Mahesh-Ranaweera/Assign1_SOFE-4630U.git
+
+    cd Assign1_SOFE-4630U
+
+    npm install
+
+    npm start
+
+    >> Navigate to localhost:3000 on the web-browser
+    ```
+
