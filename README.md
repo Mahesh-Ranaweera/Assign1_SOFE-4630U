@@ -1,6 +1,8 @@
 # Assign1_SOFE-4630U :: Notebook WebApp
 Assignment 1: CloudComputing
 
+![Notebook Logo](https://github.com/Mahesh-Ranaweera/Assign1_SOFE-4630U/blob/master/public/assets/app_header.svg?sanitize=true)
+
 Notebook is an web application that allows users such as students to take notes online, upload and share them to the public. 
 App allows users to register and use the service. Users are able to upload their current notes and save them privately or share them
 publicly to the other users in the platform. Users are able to search publicly available notes and view them. This web-app is build using 
@@ -17,6 +19,7 @@ NodeJS, Express and uses PostgreSQL as the database service.
 * Allow users to search publicly available notes
 * Responsive interface
 
+![Notebook Description](https://github.com/Mahesh-Ranaweera/Assign1_SOFE-4630U/blob/master/public/assets/app_description.svg?sanitize=true)
 ---
 ## Setting up the application for local testing
 
