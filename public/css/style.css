@@ -18,6 +18,26 @@
     --yellow-sec: #E8C63B;
 }
 
+.app-header-img {
+    width: 100% !important;
+    min-width: 300px;
+    max-width: 1400px !important;
+    height: 250px !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background: url(../assets/app_header.svg) no-repeat 0 0;
+}
+
+.app-description-img {
+    display: block;
+    height: 400px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(../assets/app_description.svg) no-repeat 0 0;
+}
+
 ::-webkit-scrollbar {
     width: 2px;
     background-color: rgba(238, 238, 238, 0.1);
@@ -220,7 +240,10 @@ a {
     width: 54px;
     height: 54px;
     float: left;
+    padding: 10px;
+    box-sizing: border-box;
     background-color: aquamarine;
+    background: url(../assets/app_logo.svg);
 }
 
 .app-name {
@@ -493,4 +516,8 @@ top-modal {
     padding-right: 10px;
     opacity: 0.84;
     float: right;
+}
+
+.transparent-div{
+    background: transparent !important;
 }

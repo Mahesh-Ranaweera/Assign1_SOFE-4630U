@@ -173,8 +173,6 @@ var publicnotes = function(callback) {
 var searchnotes = function(data, callback) {
     var sql = "SELECT * FROM notes WHERE share=1 AND LOWER(heading) LIKE '%" + data.query + "%' OR LOWER(subhead) LIKE '%" + data.query + "%' OR date LIKE '%" + data.query + "%'";
 
-    console.log(sql, data.query)
-
     client.query(sql, (err, res) => {
         if (err) {
             callback(err);
