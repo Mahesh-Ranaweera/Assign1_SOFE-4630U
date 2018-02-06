@@ -50,7 +50,7 @@ https://nodejs.org
     psql
     ```
 
-    3. Download the source files
+3. Download the source files
     ```js
     git clone git@github.com:Mahesh-Ranaweera/Assign1_SOFE-4630U.git
 
