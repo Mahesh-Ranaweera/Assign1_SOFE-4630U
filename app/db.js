@@ -115,11 +115,7 @@ var getNotes = function(useremail, callback) {
             console.log(err);
             callback(err);
         } else {
-            if (res.rows.length == 0) {
-                callback(null);
-            } else {
-                callback(res.rows);
-            }
+            callback(res.rows);
         }
     });
 }
@@ -160,11 +156,7 @@ var publicnotes = function(callback) {
         if (err) {
             callback(err);
         } else {
-            if (res.rows.length == 0) {
-                callback(null);
-            } else {
-                callback(res.rows);
-            }
+            callback(res.rows);
         }
     })
 }
@@ -177,11 +169,7 @@ var searchnotes = function(data, callback) {
         if (err) {
             callback(err);
         } else {
-            if (res.rows.length == 0) {
-                callback(null);
-            } else {
-                callback(res.rows);
-            }
+            callback(res.rows);
         }
     })
 }
