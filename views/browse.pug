@@ -16,42 +16,43 @@ block content
         form.uk-search.uk-search-large.uk-width-1-1(method='POST', action='/searchnotes')
             span(uk-search-icon)
             input.uk-search-input(name='searchquery', type='search', placeholder='Search Notes ..')
+        
+        if notes != null
+            for item, i in notes
+                //-define the variables
+                - var id =  notes[i].id
+                - var content = notes[i]
+                - var share = notes[i].share
+                - var target = 'target: #modal' + i
+                - var modalID = 'modal' + i
+                - var targetDEL = 'target: #delete' + i
+                - var modalDEL = 'delete' + i
 
-        for item, i in notes
-            //-define the variables
-            - var id =  notes[i].id
-            - var content = notes[i]
-            - var share = notes[i].share
-            - var target = 'target: #modal' + i
-            - var modalID = 'modal' + i
-            - var targetDEL = 'target: #delete' + i
-            - var modalDEL = 'delete' + i
+                .card-holder.three_w
+                    .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
 
-            .card-holder.three_w
-                .uk-card.uk-card-default.uk-card-hover.uk-card-body.card-height.uk-padding-small
+                        .card-body.smooth(uk-toggle=target)
+                                if (share == 0)
+                                    .uk-card-badge.uk-label Private
+                                if (share == 1)
+                                    .uk-card-badge.uk-label Public
 
-                    .card-body.smooth(uk-toggle=target)
-                            if (share == 0)
-                                .uk-card-badge.uk-label Private
-                            if (share == 1)
-                                .uk-card-badge.uk-label Public
+                                .uk-card-title #{notes[i].heading}
+                                p #{notes[i].subhead}
 
-                            .uk-card-title #{notes[i].heading}
+                        .card-footer
+                            //-date
+                            .date-info
+                                b #{notes[i].date}
+
+                //-modal for notes
+                div.uk-flex-top(id=modalID, uk-modal)
+                    .uk-modal-dialog.uk-modal-body.uk-margin-auto-vertical
+                        button.uk-modal-close-default(type='button', uk-close)
+                        .uk-modal-header
+                            h2.uk-modal-title #{notes[i].heading}
                             p #{notes[i].subhead}
-
-                    .card-footer
-                        //-date
-                        .date-info
-                            b #{notes[i].date}
-
-            //-modal for notes
-            div.uk-flex-top(id=modalID, uk-modal)
-                .uk-modal-dialog.uk-modal-body.uk-margin-auto-vertical
-                    button.uk-modal-close-default(type='button', uk-close)
-                    .uk-modal-header
-                        h2.uk-modal-title #{notes[i].heading}
-                        p #{notes[i].subhead}
-                    
-                    - var notesinfo = notes[i].content 
-                    .uk-modal-body(uk-overflow-auto)
-                        | !{notesinfo}
+                        
+                        - var notesinfo = notes[i].content 
+                        .uk-modal-body(uk-overflow-auto)
+                            | !{notesinfo}
