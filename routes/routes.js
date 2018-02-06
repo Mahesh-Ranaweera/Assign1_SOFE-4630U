@@ -369,7 +369,7 @@ router.post('/searchnotes', function(req, res, next) {
     /**Makesure user session exists */
     if (req.session.usersess) {
         data = {
-            query: req.body.searchquery
+            query: req.body.searchquery.toLowerCase()
         }
 
         res.redirect('/browsenotes?search=' + data.query);

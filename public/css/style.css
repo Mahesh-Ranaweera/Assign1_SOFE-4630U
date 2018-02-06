@@ -32,7 +32,7 @@
 .app-description-img {
     display: block;
     height: 400px;
-    display:block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     background: url(../assets/app_description.svg) no-repeat 0 0;
@@ -518,6 +518,16 @@ top-modal {
     float: right;
 }
 
-.transparent-div{
+.user-info {
+    width: auto;
+    line-height: 40px;
+    height: 40px;
+    padding-left: 10px;
+    opacity: 0.84;
+    color: #2196F3;
+    float: left;
+}
+
+.transparent-div {
     background: transparent !important;
 }

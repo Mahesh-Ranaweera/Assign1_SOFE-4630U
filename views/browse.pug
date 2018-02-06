@@ -41,6 +41,10 @@ block content
                                 p #{notes[i].subhead}
 
                         .card-footer
+                            //-note name
+                            .user-info
+                                b @#{notes[i].fname.toLowerCase()}
+
                             //-date
                             .date-info
                                 b #{notes[i].date}

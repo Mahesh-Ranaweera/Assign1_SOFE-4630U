@@ -154,7 +154,7 @@ var updateNote = function(data, callback) {
 
 /**get all public notes */
 var publicnotes = function(callback) {
-    var sql = "SELECT * FROM notes WHERE share=1";
+    var sql = "SELECT notes.*, users.email, users.fname FROM notes INNER JOIN users ON notes.email=users.email WHERE share=1";
 
     client.query(sql, (err, res) => {
         if (err) {
@@ -171,7 +171,7 @@ var publicnotes = function(callback) {
 
 /**get all search query */
 var searchnotes = function(data, callback) {
-    var sql = "SELECT * FROM notes WHERE share=1 AND LOWER(heading) LIKE '%" + data.query + "%' OR LOWER(subhead) LIKE '%" + data.query + "%' OR date LIKE '%" + data.query + "%'";
+    var sql = "SELECT notes.*, users.email, users.fname FROM notes INNER JOIN users ON notes.email=users.email WHERE share=1 AND LOWER(heading) LIKE '%" + data.query + "%' OR LOWER(subhead) LIKE '%" + data.query + "%' OR date LIKE '%" + data.query + "%'";
 
     client.query(sql, (err, res) => {
         if (err) {
