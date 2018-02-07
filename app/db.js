@@ -8,6 +8,7 @@ const {
     Client
 } = require('pg')
 
+/**Connection credentials */
 const client = new Client({
     user: remoteDB.dbconnect.dbuser,
     host: remoteDB.dbconnect.dbhost,
@@ -24,6 +25,7 @@ client.on('error', (err, client) => {
     process.exit(-1);
 });
 
+/**Create table if not exists */
 const createTB =
     'CREATE TABLE IF NOT EXISTS users(' +
     'email VARCHAR(100) PRIMARY KEY,' +

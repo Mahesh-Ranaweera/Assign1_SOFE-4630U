@@ -1,3 +1,11 @@
+/**
+ * Mahesh Ranaweera (100555353)
+ * SOFE4630U: Cloud Computing Assignment 1
+ * Feb 7, 2018
+ * 
+ * App routing
+ */
+
 var express = require('express');
 var router = express.Router();
 var dbconn = require('../app/db');
