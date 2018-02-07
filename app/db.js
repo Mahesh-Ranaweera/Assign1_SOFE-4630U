@@ -14,6 +14,7 @@ const client = new Client({
     database: remoteDB.dbconnect.db,
     password: remoteDB.dbconnect.dbpassw,
     post: remoteDB.dbconnect.dbport,
+    ssl: true
 });
 
 client.connect();
